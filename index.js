@@ -2,7 +2,7 @@ import express from 'express';
 import connectDB from './DbConnection/dbConnection.js';
 import dotenv from 'dotenv';
 import cors from 'cors';
-
+import authRoute from './Routes/passwordRoute.js';
 
 
 //dotenv config
@@ -29,7 +29,7 @@ app.get("/",(req,res) =>{
 });
 
 //custom routes
-
+app.use("/api/auth", authRoute);
 //port
 const PORT=process.env.PORT || 3000;
 
