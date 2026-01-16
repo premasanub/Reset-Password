@@ -89,6 +89,7 @@ export const forgotPassword = async (req, res) => {
   }
 };
 
+
 //Reset password
 export const resetPassword = async (req, res) => {
   try {
