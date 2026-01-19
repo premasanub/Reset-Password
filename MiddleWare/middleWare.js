@@ -8,7 +8,7 @@ export const authMiddleware = async (req, res, next) => {
   //method 1
   //const token = req.header("Authorization");
   //method 2 bearer token
-  const token = req.headers.authorization?.split(' ')[1]
+  const token = req.headers.authorization?.split(' ')[1];
 
   if (!token) {
     return res.status(404).json({ message: "Token Missing" });

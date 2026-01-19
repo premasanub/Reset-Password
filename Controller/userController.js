@@ -96,10 +96,24 @@ export const resetPassword = async (req, res) => {
     const { password } = req.body;
     const { id, token } = req.params;
 
-    const user = await User.findById(id);
+    //check empty password
+    if(!password || password.trim()==="") 
+    {
+      return 
+      res.status(404).json({ message: "password cannot be empty" });
+    }
+   //check password length
+     if( password.length< 6) 
+    {
+      return 
+      res.status(404).json({ message: "password must be at least 6 characters " });
+    }
+    //check user
+   const user = await User.findById(id);
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
+    
     
     //verify token
     const decoded = jwt.verify(token,process.env.JWT_SECRET);
