@@ -97,16 +97,16 @@ export const resetPassword = async (req, res) => {
     const { id, token } = req.params;
 
     //check empty password
-    if(!password || password.trim()==="") 
+    if( !password || password.trim() === "" ) 
     {
-      return 
-      res.status(404).json({ message: "password cannot be empty" });
+      return res.status(400).json({ message: "password cannot be empty" });
     }
+      
    //check password length
-     if( password.length< 6) 
+     if( password.length < 6) 
     {
-      return 
-      res.status(404).json({ message: "password must be at least 6 characters " });
+      return res.status(400).json({ message: "password must be at least 6 characters " });
+      
     }
     //check user
    const user = await User.findById(id);
